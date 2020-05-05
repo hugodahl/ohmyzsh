@@ -19,7 +19,18 @@ function noyes() {
     return 1
 }
 
+function reset_theme_elements() {
+	# Reset all prompt elements, so that there is no "bleedover" from one theme to the next
+	PROMPT=""
+	RPROMPT=""
+	ZSH_THEME_GIT_PROMPT_PREFIX=""
+	ZSH_THEME_GIT_PROMPT_SUFFIX=""
+	ZSH_THEME_GIT_PROMPT_CLEAN=""
+	ZSH_THEME_GIT_PROMPT_DIRTY=""
+}
+
 function theme_preview() {
+	reset_theme_elements()
     THEME=$1
     THEME_NAME=`echo $THEME | sed s/\.zsh-theme$//`
     print "$fg[blue]${(l.((${COLUMNS}-${#THEME_NAME}-5))..─.)}$reset_color $THEME_NAME $fg[blue]───$reset_color"
